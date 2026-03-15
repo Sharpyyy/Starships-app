@@ -33,8 +33,15 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
+/**
+ * Тема приложения.
+ * Модификатор SWAPI-STARSHIPS-MOD_B8_SHARE_DETAIL (CamelCase: SwapiStarshipsModB8ShareDetail):
+ * - SWAPI — Star Wars API (https://swapi.dev/api/)
+ * - STARSHIPS — раздел /starships/
+ * - MOD_B8_SHARE_DETAIL — Share из экрана Detail через стандартный Share Intent.
+ */
 @Composable
-fun SWAPISTARSHIPSMOD_B8_SHARE_DETAILTheme(
+fun SwapiStarshipsModB8ShareDetailTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,

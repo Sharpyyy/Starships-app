@@ -5,10 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.example.swapi_starships_mod_b8_share_detail.navigation.AppNavigation
-import com.example.swapi_starships_mod_b8_share_detail.ui.theme.SWAPISTARSHIPSMOD_B8_SHARE_DETAILTheme
+import com.example.swapi_starships_mod_b8_share_detail.ui.theme.SwapiStarshipsModB8ShareDetailTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,9 +18,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            SWAPISTARSHIPSMOD_B8_SHARE_DETAILTheme {
+            SwapiStarshipsModB8ShareDetailTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    AppNavigation()
+                    AppNavigation(modifier = Modifier.padding(innerPadding))
                 }
             }
         }

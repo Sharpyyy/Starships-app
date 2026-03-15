@@ -18,6 +18,17 @@ sealed class StarshipDetailUiState {
     data class Error(val message: String) : StarshipDetailUiState()
 }
 
+/**
+ * ViewModel экрана детали корабля.
+ *
+ * Почему StateFlow, а не mutableStateOf?
+ * - mutableStateOf живёт в Compose runtime — для использования из ViewModel пришлось бы
+ *   передавать в ViewModel scope/CompositionLocal или хранить state в Activity, что ломает
+ *   разделение слоёв и усложняет тесты.
+ * - StateFlow — рекомендуемый способ экспозиции UI state из ViewModel: не зависит от Compose,
+ *   переживает смену конфигурации, удобен для асинхронных обновлений в coroutines и даёт
+ *   один источник правды для нескольких подписчиков (collectAsState в Compose подписывается на Flow).
+ */
 @HiltViewModel
 class StarshipDetailViewModel @Inject constructor(
     private val repository: StarshipRepository,
