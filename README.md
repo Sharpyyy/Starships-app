@@ -29,7 +29,7 @@
 | **Архитектура** | Слой **data** (DTO, API, Repository impl, Mapper) → слой **domain** (модели Starship / StarshipDetail, интерфейс Repository) → **ViewModel** → **UI** (Compose). DTO в UI не используются, только domain-модели. |
 | **Экран List** | Список кораблей по ресурсу Starships, **первая страница** (`/starships/?page=1`). |
 | **Экран Detail** | Открывается по клику из списка, детали грузятся **отдельным запросом по id** (`/starships/{id}/`). |
-| **Состояния** | **Loading** / **Content** / **Error**. При ошибке — понятный текст и кнопка **Retry**. |
+| **Состояния** | **Loading** / **Content** / **Error**. `uiState` хранится во `ViewModel` через **`mutableStateOf`** (Compose State) и читается в Compose напрямую (`val uiState = viewModel.uiState`), без `StateFlow/collectAsState`. При ошибке — понятный текст и кнопка **Retry**. |
 | **DI** | **Hilt** (модуль `AppModule`, `@HiltViewModel`, внедрение Repository и API). |
 
 ---

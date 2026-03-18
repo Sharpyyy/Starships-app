@@ -25,8 +25,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -43,7 +41,7 @@ fun StarshipDetailScreen(
     onBack: () -> Unit,
     viewModel: StarshipDetailViewModel = hiltViewModel()
 ) {
-    val uiState by viewModel.uiState.collectAsState()
+    val uiState = viewModel.uiState
 
     when (val state = uiState) {
         is StarshipDetailUiState.Loading -> LoadingContent()
@@ -59,7 +57,6 @@ fun StarshipDetailScreen(
     }
 }
 
-/** MOD_B8_SHARE_DETAIL: шаринг из экрана Detail через стандартный Share Intent. */
 private fun shareStarshipDetail(context: android.content.Context, detail: StarshipDetail) {
     val shareText = buildString {
         appendLine("$SWAPI_STARSHIPS_BASE${detail.id}/")

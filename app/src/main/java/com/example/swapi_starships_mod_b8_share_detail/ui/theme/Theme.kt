@@ -21,29 +21,11 @@ private val LightColorScheme = lightColorScheme(
     primary = Purple40,
     secondary = PurpleGrey40,
     tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
 )
 
-/**
- * Тема приложения.
- * Модификатор SWAPI-STARSHIPS-MOD_B8_SHARE_DETAIL (CamelCase: SwapiStarshipsModB8ShareDetail):
- * - SWAPI — Star Wars API (https://swapi.dev/api/)
- * - STARSHIPS — раздел /starships/
- * - MOD_B8_SHARE_DETAIL — Share из экрана Detail через стандартный Share Intent.
- */
 @Composable
 fun SwapiStarshipsModB8ShareDetailTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {

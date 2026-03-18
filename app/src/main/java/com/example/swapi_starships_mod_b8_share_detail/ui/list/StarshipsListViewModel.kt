@@ -1,13 +1,13 @@
 package com.example.swapi_starships_mod_b8_share_detail.ui.list
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.swapi_starships_mod_b8_share_detail.domain.model.Starship
 import com.example.swapi_starships_mod_b8_share_detail.domain.repository.StarshipRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,8 +22,8 @@ class StarshipsListViewModel @Inject constructor(
     private val repository: StarshipRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<StarshipsListUiState>(StarshipsListUiState.Loading)
-    val uiState: StateFlow<StarshipsListUiState> = _uiState.asStateFlow()
+    var uiState: StarshipsListUiState by mutableStateOf(StarshipsListUiState.Loading)
+        private set
 
     init {
         loadStarships()
@@ -31,13 +31,13 @@ class StarshipsListViewModel @Inject constructor(
 
     fun loadStarships() {
         viewModelScope.launch {
-            _uiState.value = StarshipsListUiState.Loading
+            uiState = StarshipsListUiState.Loading
             repository.getStarshipsList(page = 1)
                 .onSuccess { list ->
-                    _uiState.value = StarshipsListUiState.Content(list)
+                    uiState = StarshipsListUiState.Content(list)
                 }
                 .onFailure { e ->
-                    _uiState.value = StarshipsListUiState.Error(
+                    uiState = StarshipsListUiState.Error(
                         e.message ?: "Не удалось загрузить список кораблей"
                     )
                 }
